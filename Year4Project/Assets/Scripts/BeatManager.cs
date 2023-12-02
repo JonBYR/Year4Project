@@ -19,7 +19,7 @@ public class BeatManager : MonoBehaviour
         
         if(Input.anyKeyDown)
         {
-            Debug.Log("Pressed");
+            //Debug.Log("Pressed");
         }
     }
 }

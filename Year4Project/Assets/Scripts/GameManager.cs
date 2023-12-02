@@ -15,14 +15,18 @@ public class GameManager : MonoBehaviour
     public float elapsedTime; //seconds passed since song has started
     public float offset; //used to offset for the first beat incase there is any silence beforehand
     public float margin = 0.1f;
-    float timer;
+    public float timer;
+    private void Awake()
+    {
+        music.Play();
+    }
     // Start is called before the first frame update
     void Start()
     {
         instance = this; //ensures only one gamemanager is created
         secPerBeat = 60f / songBpm;
         elapsedTime = (float)AudioSettings.dspTime; //records when the music starts
-        music.Play();
+        Debug.Log(secPerBeat - margin);
          //calculates the seconds between each beat
     }
 
@@ -34,16 +38,16 @@ public class GameManager : MonoBehaviour
         songPosBeats = songPos / secPerBeat; //determines how many beats since song has started
         if(Input.anyKeyDown)
         {
-            if(secPerBeat+margin >= timer && secPerBeat-margin <= timer) //making sure that player is within beat
+            if(timer < 0.1 || secPerBeat-margin <= timer) //making sure that player is within beat
             {
                 Debug.Log("Within Beat");
                 timer = 0;
             }
-            else if(secPerBeat+margin > timer) //if player misses beat completely
-            {
-                Debug.Log("Missed Beat");
-                timer = 0;
-            }
+        }
+        if(timer >= secPerBeat)
+        {
+            Debug.Log("Missed Beat");
+            timer = 0;
         }
     }
 }
