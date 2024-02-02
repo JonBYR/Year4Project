@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class BeatManager : MonoBehaviour
 {
-    public GameManager man; //use this website https://audioalter.com/bpm-detector to try and find the BPM of songs,
-    public float margin = 0.1f;
-    float timer;
+    public GameManager man;
+    public TextMeshProUGUI scoreText;
+    int score = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreText.text = "Score: " + score;
     }
 
     // Update is called once per frame
@@ -19,7 +19,13 @@ public class BeatManager : MonoBehaviour
         
         if(Input.anyKeyDown)
         {
-            //Debug.Log("Pressed");
+            if (man.onBeat == true)
+            {
+                Debug.Log("BPM matched!"); //singleton used to access global information. If the user is pressing within beat, user can move
+                score++;
+                scoreText.text = "Score: " + score;
+            }
+            else Debug.Log("BPM failed!");
         }
     }
 }

@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //taken from this githib repo https://github.com/JJMaslen/WalkWithRhythm
     public AudioSource music;
     public BeatManager beat;
     public static GameManager instance;
-    public float errorMargin; //this should be in seconds
-    public float songBpm; //bpm of song
-    public float secPerBeat; //number of seconds between each beat
-    public float songPos; //position in song
-    public float songPosBeats; //song position in beats
-    public float elapsedTime; //seconds passed since song has started
-    public float offset; //used to offset for the first beat incase there is any silence beforehand
-    public float margin = 0.1f;
-    public float timer;
+    public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
+    public int margin;
+    public int timer;
+    public bool onBeat = false; //used to determine if a player can move as it is within the bpm
+    public double bpmConversion(double bpm)
+    {
+        double fixedUpdateBpm = 60 / bpm; //fixed Update is 50 frames rather than 60 frames per second, so bpm must be converted to match the timing for fixedUpdate
+        return fixedUpdateBpm;
+    }
     private void Awake()
     {
         music.Play();
@@ -23,31 +24,31 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this; //ensures only one gamemanager is created
-        secPerBeat = 60f / songBpm;
-        elapsedTime = (float)AudioSettings.dspTime; //records when the music starts
-        Debug.Log(secPerBeat - margin);
-         //calculates the seconds between each beat
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        songPos = (float)(AudioSettings.dspTime - elapsedTime - offset); //determines how long since the song has started
-        songPosBeats = songPos / secPerBeat; //determines how many beats since song has started
-        if(Input.anyKeyDown)
+        timer++;
+        int beat = (int)(bpmConversion(songBpm) * 50); //converts beat to bpm
+
+        int count = timer % beat; //check current time between beats
+
+        if (count >= beat - margin) //if between beats (or slightly before)
         {
-            if(timer < 0.1 || secPerBeat-margin <= timer) //making sure that player is within beat
+            if (onBeat == false)
             {
-                Debug.Log("Within Beat");
-                timer = 0;
+                onBeat = true;
             }
+            onBeat = true;
         }
-        if(timer >= secPerBeat)
+        else if (count <= margin) //accounts for lateness
         {
-            Debug.Log("Missed Beat");
-            timer = 0;
+            onBeat = true;
+        }
+        else
+        {
+            onBeat = false;
         }
     }
 }
