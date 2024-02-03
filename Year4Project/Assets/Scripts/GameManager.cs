@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     //taken from this githib repo https://github.com/JJMaslen/WalkWithRhythm
     public AudioSource music;
-    public BeatManager beat;
     public static GameManager instance;
     public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
     public int margin;
