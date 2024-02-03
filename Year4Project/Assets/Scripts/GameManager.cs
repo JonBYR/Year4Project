@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public AudioSource music;
     public static GameManager instance;
     public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
+    public int songKey;
     public int margin;
     public int timer;
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm
