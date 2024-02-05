@@ -196,4 +196,4 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 8
-  beatThreshold: 10
+  beatThreshold: 2

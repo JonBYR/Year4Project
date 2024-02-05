@@ -12,17 +12,19 @@ public class SkeletonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        man = GameObject.Find("GameManager").GetComponent<GameManager>();
+        man = GameManager.Instance; //gets the singleton
+        man.RegisterEnemy(GetInstanceID()); //gets the unique identifier for enemy
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(man.onBeat == true)
+        if(man.onBeat == true && man.returnEnemyMove(GetInstanceID())) //checks that the enemy is within the beat and that the enemy is allowed to move
         {
+            man.setEnemyMove(GetInstanceID()); //this will set the enemy to be false after beat is called so the enemy doesn't continually move
             Vector3 moveDirecion = Vector3.zero;
             beatCounter++;
-            if(beatCounter > beatThreshold)
+            if(beatCounter >= beatThreshold)
             {
                 int randomDirection = (int)Random.Range(0, 3);
                 if (randomDirection == 0)

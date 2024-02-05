@@ -124,7 +124,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 8
-  beatThreshold: 10
+  beatThreshold: 2
 --- !u!50 &4858159513735261976
 Rigidbody2D:
   serializedVersion: 4

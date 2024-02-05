@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class ZombieController : MonoBehaviour
@@ -14,25 +15,33 @@ public class ZombieController : MonoBehaviour
     void Start()
     {
         p = GameObject.Find("Player");
-        man = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //man = GameObject.Find("GameManager").GetComponent<GameManager>();
+        man = GameManager.Instance; //gets the singleton
+        man.RegisterEnemy(GetInstanceID()); //gets the unique identifier for enemy
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(man.onBeat == true) //enemy assumes perfect movement
+        if(man.onBeat == true && man.returnEnemyMove(GetInstanceID())) //enemy assumes perfect movement
         {
+            Debug.Log("Called!");
+            man.setEnemyMove(GetInstanceID());
             float horizontalDistance = p.transform.position.x - transform.position.x;
             float verticalDistance = p.transform.position.y - transform.position.y;
             Vector3 moveDirection = Vector3.zero;
             beatCounter++;
+            float positiveHorizontal = horizontalDistance;
+            float positiveVertical = verticalDistance;
+            positiveHorizontal = Mathf.Abs(positiveHorizontal);
+            positiveVertical = Mathf.Abs(positiveVertical);
             if(beatCounter >= beatThreshold)
             {
-                if (Mathf.Abs(horizontalDistance) < 1f && Mathf.Abs(verticalDistance) < 1f)
+                if (positiveHorizontal < 1f && positiveVertical < 1f)
                 {
                     moveDirection = new Vector3(0, -0.1f, 0);
                 }
-                else if (Mathf.Abs(horizontalDistance) < Mathf.Abs(verticalDistance) || Mathf.Abs(verticalDistance) < 1f)
+                else if ((positiveHorizontal < positiveVertical || positiveVertical < 1f) && positiveHorizontal >= 1f) //if there is a negligable distance the AI should move vertically
                 {
                     if(horizontalDistance < 0)
                     {
@@ -43,7 +52,7 @@ public class ZombieController : MonoBehaviour
                         moveDirection = new Vector3(0.1f, 0, 0);
                     }
                 }
-                else if (Mathf.Abs(horizontalDistance) > Mathf.Abs(verticalDistance) || Mathf.Abs(horizontalDistance) < 1f)
+                else if ((positiveHorizontal > positiveVertical || positiveHorizontal < 1f) && positiveVertical >= 1f)
                 {
                     if(verticalDistance < 0)
                     {
