@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walls:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   beatThreshold: 2
   triggerArea: {fileID: 8595550404351371327}
 --- !u!1 &8595550404351371327
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 288555303615065932}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Enemy
+  m_TagString: TriggerZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
