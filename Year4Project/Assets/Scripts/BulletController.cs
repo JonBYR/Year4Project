@@ -59,11 +59,15 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TriggerZone" || collision.gameObject.name.Contains("Mage")) 
+        if (collision.gameObject.tag == "TriggerZone" || collision.gameObject.name.Contains("Mage"))
         {
             Debug.Log("Called");
             return;
         }
-        else if(collision.gameObject.tag == "Player") Destroy(this.gameObject);
+        else if (collision.gameObject.tag == "Player") 
+        {
+            PlayerHealth.TakeDamage();
+            Destroy(this.gameObject); 
+        }
     }
 }

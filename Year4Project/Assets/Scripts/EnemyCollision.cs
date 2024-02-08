@@ -19,6 +19,7 @@ public class EnemyCollision : MonoBehaviour
         if (this.gameObject.tag == "TriggerZone") return;
         if(collision.gameObject.tag == "Enemy")
         {
+            PlayerHealth.TakeDamage();
             if (collision.gameObject.name.Contains("Mage"))
             {
                 mageController = collision.gameObject.GetComponent<MageController>();
