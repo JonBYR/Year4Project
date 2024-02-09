@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
     public int songKey;
+    public int time_signature; //will be used for enemy spawning
+    public float loudness; //this will be changed later to be based on loudness
     public int margin;
     public int timer;
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm

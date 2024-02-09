@@ -175,7 +175,7 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 8
-  beatThreshold: 10
+  beatThreshold: 2
 --- !u!95 &264970303365092514
 Animator:
   serializedVersion: 5
