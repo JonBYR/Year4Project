@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public float loudness; //this will be changed later to be based on loudness
     public int margin;
     public int timer;
+    public double dTimer;
+    public double dMargin;
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm
     public Dictionary<int, bool> enemyObjects = new Dictionary<int, bool>();
     bool beatDone = false;
@@ -48,6 +50,29 @@ public class GameManager : MonoBehaviour
     public bool returnEnemyMove(int enemyID)
     {
         return enemyObjects[enemyID];
+    }
+    void Update() 
+    {
+        dTimer += Time.deltaTime;
+        double bpm = bpmConversion(songBpm);
+        if(dTimer >= bpm - dMargin || dTimer < 0.0+dMargin) 
+        {
+            onBeat = true;
+            if(beatDone == false) beatDone = true;
+        }
+        else 
+        {
+            if(beatDone == true)
+            {
+                beatDone = false;
+                foreach(int id in enemyObjects.Keys.ToList()) //once beat is completed let enemies move again
+                {
+                    enemyObjects[id] = true;
+                }
+            }
+            onBeat = false;
+        }
+        if(dTimer == bpm) dTimer = 0;
     }
     void FixedUpdate()
     {
