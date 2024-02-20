@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
+
 public class PlayerController : MonoBehaviour
 {
     public GameManager man;
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool horizontal;
     public bool moving;
     public float direction; //these three variables are required for the mimic movement
+    public MissedBeat mbeat;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 moving = false;
+                StartCoroutine(mbeat.Shake(.15f, .4f));
                 Debug.Log("BPM failed!");
             }
         }

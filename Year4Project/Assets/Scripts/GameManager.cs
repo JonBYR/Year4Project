@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,9 +21,13 @@ public class GameManager : MonoBehaviour
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm
     public Dictionary<int, bool> enemyObjects = new Dictionary<int, bool>();
     bool beatDone = false;
+    public Slider s;
+    private Color red = new Color(255f, 0f, 0f);
+    private Color green = new Color(0f, 255f, 0f);
     public double bpmConversion(double bpm)
     {
         double fixedUpdateBpm = 60 / bpm; //fixed Update is 50 frames rather than 60 frames per second, so bpm must be converted to match the timing for fixedUpdate
+        s.maxValue = (float)fixedUpdateBpm;
         return fixedUpdateBpm;
     }
     private void Awake()
@@ -54,10 +59,12 @@ public class GameManager : MonoBehaviour
     void Update() 
     {
         dTimer += Time.deltaTime;
+        s.value = (float)dTimer;
         double bpm = bpmConversion(songBpm);
         if(dTimer >= bpm - dMargin || dTimer < 0.0+dMargin) 
         {
             onBeat = true;
+            s.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = green;
             if(beatDone == false) beatDone = true;
         }
         else 
@@ -70,10 +77,12 @@ public class GameManager : MonoBehaviour
                     enemyObjects[id] = true;
                 }
             }
+            s.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = red;
             onBeat = false;
         }
-        if(dTimer == bpm) dTimer = 0;
+        if (dTimer >= bpm) { dTimer = 0; s.value = 0f; }
     }
+    /*
     void FixedUpdate()
     {
         timer++;
@@ -105,4 +114,5 @@ public class GameManager : MonoBehaviour
             onBeat = false;
         }
     }
+    */
 }
