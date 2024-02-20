@@ -6752,7 +6752,7 @@ MonoBehaviour:
   margin: 7
   timer: 0
   dTimer: 0
-  dMargin: 0.17
+  dMargin: 0.1
   onBeat: 0
   s: {fileID: 679800788}
 --- !u!82 &645134751
@@ -7078,7 +7078,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872140021}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -7657,6 +7657,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5863593676063893695, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
+      propertyPath: man
+      value: 
+      objectReference: {fileID: 645134750}
     - target: {fileID: 7910487039707927724, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
       propertyPath: man
       value: 
@@ -7665,6 +7669,14 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1015391051}
+    - target: {fileID: 8251511563616425135, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8251511563616425135, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
+      propertyPath: ColorBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
