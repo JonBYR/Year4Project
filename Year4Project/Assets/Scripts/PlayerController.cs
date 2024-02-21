@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public bool moving;
     public float direction; //these three variables are required for the mimic movement
     public MissedBeat mbeat;
+    public WeaponController weapon;
+    public static bool hitBeat = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,22 @@ public class PlayerController : MonoBehaviour
         horizontal = false;
         moving = false;
     }
-
+    void CheckString(string direction)
+    {
+        if (WeaponController.currentWeapon == "Guitar")
+        {
+            if (direction == "Up" || direction == "Down") weapon.ChangeSize(3, 1);
+            else if (direction == "Left" || direction == "Right") weapon.ChangeSize(1, 3);
+        }
+        else if (WeaponController.currentWeapon == "Harp")
+        {
+            if (direction == "Up") { weapon.ChangeSize(1, 4); weapon.ChangeOffset(0, 2.5f); }
+            else if (direction == "Left") { weapon.ChangeSize(4, 1); weapon.ChangeOffset(-2.5f, 0); }
+            else if (direction == "Right") { weapon.ChangeSize(4, 1); weapon.ChangeOffset(2.5f, 0); }
+            else if(direction == "Down") { weapon.ChangeSize(1, 4); weapon.ChangeOffset(0, -2.5f); }
+        }
+        else return;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,8 +50,11 @@ public class PlayerController : MonoBehaviour
             if (man.onBeat == true) //code for movement taken from this tutorial: https://www.youtube.com/watch?v=mbzXIOKZurA
             {
                 moving = true;
+                hitBeat = true;
                 if (Input.GetAxisRaw("Horizontal") == 1f || Input.GetAxisRaw("Horizontal") == -1f)
                 {
+                    if (Input.GetAxisRaw("Horizontal") == 1f) { weapon.ChangeOffset(1, 0); CheckString("Right"); }
+                    else if (Input.GetAxisRaw("Horizontal") == -1f) { weapon.ChangeOffset(-1, 0); CheckString("Left"); }
                     direction = Input.GetAxisRaw("Horizontal");
                     horizontal = true;
                     if (!Physics2D.OverlapCircle(transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0), 0.2f, walls)) transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0); //moves position of player to be one tile left or right of player
@@ -42,6 +62,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (Input.GetAxisRaw("Vertical") == 1f || Input.GetAxisRaw("Vertical") == -1f)
                 {
+                    if (Input.GetAxisRaw("Vertical") == 1f) { weapon.ChangeOffset(0, 1); CheckString("Up"); }
+                    else if (Input.GetAxisRaw("Vertical") == -1f) { weapon.ChangeOffset(0, -1); CheckString("Down"); }
                     direction = Input.GetAxisRaw("Vertical");
                     horizontal = false;
                     if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, Input.GetAxisRaw("Vertical") * rawDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, Input.GetAxisRaw("Vertical") * rawDist, 0f);
@@ -53,11 +75,21 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                hitBeat = false;
                 moving = false;
                 StartCoroutine(mbeat.Shake(.15f, .4f));
                 Debug.Log("BPM failed!");
             }
         }
-        if (man.onBeat == false) moving = false;
+        if (man.onBeat == false) { moving = false; hitBeat = false; }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Weapon")
+        {
+            if (collision.name.Contains("Knife")) WeaponController.currentWeapon = "Knife";
+            else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";
+            else if (collision.name.Contains("Harp")) WeaponController.currentWeapon = "Harp";
+        }
     }
 }

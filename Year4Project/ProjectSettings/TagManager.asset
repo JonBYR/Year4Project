@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - TriggerZone
   - MaxDist
+  - Weapon
+  - WeaponZone
   layers:
   - Default
   - TransparentFX
