@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject oob;
+    public GameObject zone;
     public GameManager man;
     public TextMeshProUGUI scoreText;
     public float speed = 5f;
@@ -85,11 +88,15 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Weapon")
+        if(collision.tag == "Weapon" && this.gameObject.name == "Player")
         {
-            if (collision.name.Contains("Knife")) WeaponController.currentWeapon = "Knife";
+            Physics2D.IgnoreCollision(oob.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(zone.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>()); //this doesn't work
+            Debug.Log("Collected by" + this.gameObject.name);
+            if (collision.name.Contains("Baton")) WeaponController.currentWeapon = "Baton";
             else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";
             else if (collision.name.Contains("Harp")) WeaponController.currentWeapon = "Harp";
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -73,4 +73,19 @@ public class MageController : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "WeaponZone")
+        {
+            if (PlayerController.hitBeat == true)
+            {
+                WeaponController.durability--;
+                if (WeaponController.durability == 0)
+                {
+                    WeaponController.currentWeapon = "Null";
+                }
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

@@ -9,6 +9,7 @@ public class ZombieController : MonoBehaviour
     private GameManager man;
     private PlayerController player;
     private GameObject p;
+    private Rigidbody2D playerRb;
     public LayerMask walls;
     private int beatCounter;
     public int beatThreshold;
@@ -72,6 +73,7 @@ public class ZombieController : MonoBehaviour
     {
         if (collision.tag == "WeaponZone")
         {
+            WeaponController.enemyEntered = true;
             if(PlayerController.hitBeat == true)
             {
                 WeaponController.durability--;
@@ -79,6 +81,7 @@ public class ZombieController : MonoBehaviour
                 { 
                     WeaponController.currentWeapon = "Null";
                 }
+                WeaponController.enemyEntered = false;
                 Destroy(this.gameObject);
             }
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR;
 
 public class EnemyCollision : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class EnemyCollision : MonoBehaviour
     private ZombieController zombieController;
     private MimicController mimicController;
     private MageController mageController;
+    private SkeletonController skeletonController;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class EnemyCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.gameObject.tag == "TriggerZone") return;
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             PlayerHealth.TakeDamage();
             if (collision.gameObject.name.Contains("Mage"))
@@ -34,7 +36,12 @@ public class EnemyCollision : MonoBehaviour
             {
                 mimicController = collision.gameObject.GetComponent<MimicController>();
                 mimicController.enabled = false;
-            } 
+            }
+            else if (collision.gameObject.name.Contains("Skeleton"))
+            {
+                skeletonController = collision.gameObject.GetComponent<SkeletonController>();
+                skeletonController.enabled = false;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -54,6 +61,10 @@ public class EnemyCollision : MonoBehaviour
             {
                 Invoke("StartMimic", 3f);
             }
+            else if (collision.gameObject.name.Contains("Skeleton"))
+            {
+                Invoke("StartSkeleton", 3f);
+            }
         }
     }
     void StartMage()
@@ -67,5 +78,9 @@ public class EnemyCollision : MonoBehaviour
     void StartMimic()
     {
         mimicController.enabled = true;
+    }
+    void StartSkeleton()
+    {
+        skeletonController.enabled = true;
     }
 }
