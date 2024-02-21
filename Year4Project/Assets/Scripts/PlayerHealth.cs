@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     public static void TakeDamage()
     {
         health--;
+        Debug.Log(health);
         if (health <= 0 )
         {
             Debug.Log("Game Over");

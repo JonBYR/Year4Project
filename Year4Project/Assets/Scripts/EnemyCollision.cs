@@ -11,17 +11,23 @@ public class EnemyCollision : MonoBehaviour
     private MimicController mimicController;
     private MageController mageController;
     private SkeletonController skeletonController;
+    public GameManager man;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        InvokeRepeating("CheckCollision", 0f, 1f); //repeat every second
+    }
+    private void CheckCollision()
+    {
+        if(man.onBeat == true && WeaponController.enemyEntered == true) PlayerHealth.TakeDamage();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.gameObject.tag == "TriggerZone") return;
         if (collision.gameObject.tag == "Enemy")
         {
-            PlayerHealth.TakeDamage();
+            
             if (collision.gameObject.name.Contains("Mage"))
             {
                 mageController = collision.gameObject.GetComponent<MageController>();
