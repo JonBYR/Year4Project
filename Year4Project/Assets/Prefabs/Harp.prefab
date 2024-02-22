@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7022905401487186991}
   - component: {fileID: 4277194962709945163}
   - component: {fileID: 2186875566298595936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Harp
   m_TagString: Weapon
   m_Icon: {fileID: 0}
