@@ -77,7 +77,8 @@ public class ZombieController : MonoBehaviour
             if(PlayerController.hitBeat == true)
             {
                 WeaponController.durability--;
-                if (WeaponController.durability == 0) 
+                Debug.Log(WeaponController.durability);
+                if (WeaponController.durability <= 0) 
                 { 
                     WeaponController.currentWeapon = "Null";
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class EnemyCollision : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyCollision : MonoBehaviour
     private MageController mageController;
     private SkeletonController skeletonController;
     public GameManager man;
+    public MissedBeat mBeat;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class EnemyCollision : MonoBehaviour
     }
     private void CheckCollision()
     {
-        if(man.onBeat == true && WeaponController.enemyEntered == true) PlayerHealth.TakeDamage();
+        if (man.onBeat == true && WeaponController.enemyEntered == true) { PlayerHealth.TakeDamage(); StartCoroutine(mBeat.Shake(.15f, .4f)); }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
