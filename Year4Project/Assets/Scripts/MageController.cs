@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MageController : MonoBehaviour
+public class MageController : Enemy
 {
     private GameManager man;
     private PlayerController player;
@@ -70,22 +70,6 @@ public class MageController : MonoBehaviour
                 }
                 if (!Physics2D.OverlapCircle(transform.position += moveDirection, 0.2f, walls)) transform.position += moveDirection;
                 beatCounter = 0;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "WeaponZone")
-        {
-            if (PlayerController.hitBeat == true)
-            {
-                WeaponController.durability--;
-                Debug.Log(WeaponController.durability);
-                if (WeaponController.durability <= 0)
-                {
-                    WeaponController.currentWeapon = "Null";
-                }
-                Destroy(this.gameObject);
             }
         }
     }

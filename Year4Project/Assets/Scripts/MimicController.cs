@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MimicController : MonoBehaviour
+public class MimicController : Enemy
 {
     private GameManager man;
     private PlayerController player;
@@ -27,22 +27,6 @@ public class MimicController : MonoBehaviour
             else if (!player.horizontal)
             {
                 if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, -player.direction * mimicDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, -player.direction * mimicDist, 0f);
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "WeaponZone")
-        {
-            if (PlayerController.hitBeat == true)
-            {
-                WeaponController.durability--;
-                Debug.Log(WeaponController.durability);
-                if (WeaponController.durability <= 0)
-                {
-                    WeaponController.currentWeapon = "Null";
-                }
-                Destroy(this.gameObject);
             }
         }
     }

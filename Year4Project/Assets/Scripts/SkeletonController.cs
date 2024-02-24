@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SkeletonController : MonoBehaviour
+public class SkeletonController : Enemy
 {
     private GameManager man;
     public LayerMask walls;
@@ -45,22 +45,6 @@ public class SkeletonController : MonoBehaviour
                 }
                 if (!Physics2D.OverlapCircle(transform.position += moveDirecion, 0.2f, walls)) transform.position += moveDirecion;
                 beatCounter = 0;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "WeaponZone")
-        {
-            if (PlayerController.hitBeat == true)
-            {
-                WeaponController.durability--;
-                Debug.Log(WeaponController.durability);
-                if (WeaponController.durability <= 0)
-                {
-                    WeaponController.currentWeapon = "Null";
-                }
-                Destroy(this.gameObject);
             }
         }
     }

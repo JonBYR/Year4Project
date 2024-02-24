@@ -4,7 +4,7 @@ using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ZombieController : MonoBehaviour
+public class ZombieController : Enemy
 {
     private GameManager man;
     private PlayerController player;
@@ -66,24 +66,6 @@ public class ZombieController : MonoBehaviour
                 }
                 if (!Physics2D.OverlapCircle(transform.position += moveDirection, 0.2f, walls)) transform.position += moveDirection; 
                 beatCounter = 0;
-            }
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "WeaponZone")
-        {
-            WeaponController.enemyEntered = true;
-            if(PlayerController.hitBeat == true)
-            {
-                WeaponController.durability--;
-                Debug.Log(WeaponController.durability);
-                if (WeaponController.durability <= 0) 
-                { 
-                    WeaponController.currentWeapon = "Null";
-                }
-                WeaponController.enemyEntered = false;
-                Destroy(this.gameObject);
             }
         }
     }
