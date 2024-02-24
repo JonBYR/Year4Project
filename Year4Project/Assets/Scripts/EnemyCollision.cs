@@ -14,22 +14,17 @@ public class EnemyCollision : MonoBehaviour
     private SkeletonController skeletonController;
     public GameManager man;
     public MissedBeat mBeat;
+    private bool enemyAttack = false;
     // Start is called before the first frame update
-    void Start()
-    {
-        rb = this.GetComponent<Rigidbody2D>();
-        InvokeRepeating("CheckCollision", 0f, 1f); //repeat every second
-    }
-    private void CheckCollision()
-    {
-        if (man.onBeat == true && WeaponController.enemyEntered == true) { PlayerHealth.TakeDamage(); StartCoroutine(mBeat.Shake(.15f, .4f)); }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.gameObject.tag == "TriggerZone") return;
+
         if (collision.gameObject.tag == "Enemy")
         {
-            
+            enemyAttack = true;
+            PlayerHealth.TakeDamage();
+            StartCoroutine(mBeat.Shake(.15f, .4f));
             if (collision.gameObject.name.Contains("Mage"))
             {
                 mageController = collision.gameObject.GetComponent<MageController>();
@@ -57,6 +52,7 @@ public class EnemyCollision : MonoBehaviour
         if (this.gameObject.tag == "TriggerZone") return;
         if (collision.gameObject.tag == "Enemy")
         {
+            enemyAttack = false;
             if (collision.gameObject.name.Contains("Mage"))
             {
                 Invoke("StartMage", 3f);

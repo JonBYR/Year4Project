@@ -52,28 +52,36 @@ public class PlayerController : MonoBehaviour
         {
             if (man.onBeat == true) //code for movement taken from this tutorial: https://www.youtube.com/watch?v=mbzXIOKZurA
             {
-                moving = true;
                 hitBeat = true;
-                if (Input.GetAxisRaw("Horizontal") == 1f || Input.GetAxisRaw("Horizontal") == -1f)
-                {
-                    if (Input.GetAxisRaw("Horizontal") == 1f) { weapon.ChangeOffset(1, 0); CheckString("Right"); }
-                    else if (Input.GetAxisRaw("Horizontal") == -1f) { weapon.ChangeOffset(-1, 0); CheckString("Left"); }
-                    direction = Input.GetAxisRaw("Horizontal");
-                    horizontal = true;
-                    if (!Physics2D.OverlapCircle(transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0), 0.2f, walls)) transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0); //moves position of player to be one tile left or right of player
-                    //this code will check to make sure that if, when moving, the player hits a collider, the player no longer moves
-                }
-                else if (Input.GetAxisRaw("Vertical") == 1f || Input.GetAxisRaw("Vertical") == -1f)
-                {
-                    if (Input.GetAxisRaw("Vertical") == 1f) { weapon.ChangeOffset(0, 1); CheckString("Up"); }
-                    else if (Input.GetAxisRaw("Vertical") == -1f) { weapon.ChangeOffset(0, -1); CheckString("Down"); }
-                    direction = Input.GetAxisRaw("Vertical");
-                    horizontal = false;
-                    if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, Input.GetAxisRaw("Vertical") * rawDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, Input.GetAxisRaw("Vertical") * rawDist, 0f);
-                }
-                Debug.Log("BPM matched!"); //singleton used to access global information. If the user is pressing within beat, user can move
                 score++;
                 scoreText.text = "Score: " + score;
+                if (Input.GetAxisRaw("Horizontal") == 1f) { weapon.ChangeOffset(1, 0); CheckString("Right"); }
+                else if (Input.GetAxisRaw("Horizontal") == -1f) { weapon.ChangeOffset(-1, 0); CheckString("Left"); }
+                if (Input.GetAxisRaw("Vertical") == 1f) { weapon.ChangeOffset(0, 1); CheckString("Up"); }
+                else if (Input.GetAxisRaw("Vertical") == -1f) { weapon.ChangeOffset(0, -1); CheckString("Down"); }
+                if (WeaponController.enemyEntered == true)
+                {
+                    moving = false;
+                }
+                else
+                {
+                    moving = true;
+                    if (Input.GetAxisRaw("Horizontal") == 1f || Input.GetAxisRaw("Horizontal") == -1f)
+                    {
+                        
+                        direction = Input.GetAxisRaw("Horizontal");
+                        horizontal = true;
+                        if (!Physics2D.OverlapCircle(transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0), 0.2f, walls)) transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * rawDist, 0, 0); //moves position of player to be one tile left or right of player
+                                                                                                                                                                                                                                         //this code will check to make sure that if, when moving, the player hits a collider, the player no longer moves
+                    }
+                    else if (Input.GetAxisRaw("Vertical") == 1f || Input.GetAxisRaw("Vertical") == -1f)
+                    {
+                        
+                        direction = Input.GetAxisRaw("Vertical");
+                        horizontal = false;
+                        if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, Input.GetAxisRaw("Vertical") * rawDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, Input.GetAxisRaw("Vertical") * rawDist, 0f);
+                    }
+                }
                 //moving = false;
             }
             else
@@ -81,7 +89,6 @@ public class PlayerController : MonoBehaviour
                 hitBeat = false;
                 moving = false;
                 StartCoroutine(mbeat.Shake(.15f, .4f));
-                Debug.Log("BPM failed!");
             }
         }
         if (man.onBeat == false) { moving = false; hitBeat = false; }
@@ -90,8 +97,6 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.tag == "Weapon" && this.gameObject.name == "Player")
         {
-            Physics2D.IgnoreCollision(oob.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
-            Physics2D.IgnoreCollision(zone.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>()); //this doesn't work
             Debug.Log("Collected by" + this.gameObject.name);
             if (collision.name.Contains("Baton")) WeaponController.currentWeapon = "Baton";
             else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";

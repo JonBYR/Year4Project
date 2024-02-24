@@ -27,15 +27,6 @@ public class WeaponController : MonoBehaviour
             ChangeOffset(0, 0);
             ChangeSize(0, 0);
         }
-        if(enemyEntered)
-        {
-            playerRb.constraints = RigidbodyConstraints2D.FreezePosition;
-        }
-        else if (!enemyEntered)
-        {
-            playerRb.constraints = RigidbodyConstraints2D.None;
-            playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
     }
     public void ChangeOffset(float x, float y)
     {
