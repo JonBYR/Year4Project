@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     int score = 0;
     public LayerMask walls;
     public bool horizontal;
-    public bool moving;
+    public static bool moving;
     public float direction; //these three variables are required for the mimic movement
     public MissedBeat mbeat;
     public WeaponController weapon;
@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
             else if (direction == "Left") { weapon.ChangeSize(4, 1); weapon.ChangeOffset(-2.5f, 0); }
             else if (direction == "Right") { weapon.ChangeSize(4, 1); weapon.ChangeOffset(2.5f, 0); }
             else if(direction == "Down") { weapon.ChangeSize(1, 4); weapon.ChangeOffset(0, -2.5f); }
+        }
+        else if(WeaponController.currentWeapon == "Baton")
+        {
+            weapon.ChangeSize(1, 1);
         }
         else return;
     }

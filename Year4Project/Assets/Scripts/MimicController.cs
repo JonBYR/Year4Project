@@ -18,7 +18,7 @@ public class MimicController : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(player.moving == true)
+        if(PlayerController.moving == true)
         {
             if (player.horizontal)
             {
