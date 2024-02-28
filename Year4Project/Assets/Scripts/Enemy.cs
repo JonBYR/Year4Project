@@ -1,27 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Enemy : MonoBehaviour
 {
-    //public GameManager man;
-    private bool damage = false;
+    private GameManager game;
+    public Vector2 attackSize;
+    public Transform enemyTransform;
+    public LayerMask playerMask;
+    private MissedBeat mBeat;
+    public bool canMove;
     // Start is called before the first frame update
+    /*
     void Start()
     {
-        
-    }
-
-    public void OnBeat()
-    {
-        Debug.Log("Enemy beat");
+        mBeat = GameObject.Find("Main Camera").GetComponent<MissedBeat>();
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Collider2D playerToAttack = Physics2D.OverlapBox(enemyTransform.localPosition, attackSize, 0f, playerMask);
+        if ((playerToAttack != null) && canMove)
+        {
+            PlayerHealth.TakeDamage();
+            StartCoroutine(mBeat.Shake(.15f, .4f));
+            canMove = false;
+            Invoke("MoveAgain", 3);
+        }
     }
+    */
+    /*
+    void MoveAgain()
+    {
+        canMove = true;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(enemyTransform.localPosition, attackSize);
+    }
+    */
     /*
     private void OnTriggerEnter2D(Collider2D collision)
     {

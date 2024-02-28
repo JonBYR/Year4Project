@@ -6749,7 +6749,7 @@ MonoBehaviour:
   songBpm: 104.271
   songKey: 4
   time_signature: 4
-  loudness: 0
+  loudness: 1
   margin: 7
   timer: 0
   dTimer: 0
@@ -7766,7 +7766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5393237516692362790, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.11
+      value: -1.08
       objectReference: {fileID: 0}
     - target: {fileID: 5393237516692362790, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7800,6 +7800,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5522182660603140672, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
+      propertyPath: man
+      value: 
+      objectReference: {fileID: 645134750}
+    - target: {fileID: 5522182660603140672, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
+      propertyPath: mBeat
+      value: 
+      objectReference: {fileID: 519420035}
     - target: {fileID: 5863593676063893695, guid: 094bb492e5ac07c4097011b5858d3262, type: 3}
       propertyPath: man
       value: 
@@ -7896,11 +7904,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 299371455136604605, guid: 44dc3e7c00e04f54fb1857e7df490693, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.68
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 299371455136604605, guid: 44dc3e7c00e04f54fb1857e7df490693, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.63
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 299371455136604605, guid: 44dc3e7c00e04f54fb1857e7df490693, type: 3}
       propertyPath: m_LocalPosition.z

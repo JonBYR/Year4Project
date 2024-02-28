@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MimicController : Enemy
 {
+    /// <summary>
+    /// private GameManager man;
+    /// </summary>
     private GameManager man;
     private PlayerController player;
     public LayerMask walls;
@@ -11,7 +14,7 @@ public class MimicController : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        man = GameObject.Find("GameManager").GetComponent<GameManager>();
+        man = GameManager.Instance;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 

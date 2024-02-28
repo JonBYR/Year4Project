@@ -194,6 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8630a9c227386744f8f07ee4bb3badd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackSize: {x: 2, y: 2}
+  enemyTransform: {fileID: 299371455136604605}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  canMove: 0
   walls:
     serializedVersion: 2
     m_Bits: 8

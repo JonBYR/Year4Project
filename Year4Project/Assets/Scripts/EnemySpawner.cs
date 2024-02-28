@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
             float x = UnityEngine.Random.Range(-11, 10);
             float y = UnityEngine.Random.Range(-5, 4);
             Vector3 spawnPos = new Vector3(x, y, 0);
-            Collider[] intersection = Physics.OverlapSphere(new Vector2(x, y), 0.5f);
+            Collider[] intersection = Physics.OverlapSphere(new Vector2(x, y), 2f);
             if(intersection.Length == 0) 
             {
                 int enemy = (int)UnityEngine.Random.Range(0, enemySize);
