@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //public GameManager man;
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void OnBeat()
+    {
+        Debug.Log("Enemy beat");
     }
 
     // Update is called once per frame
