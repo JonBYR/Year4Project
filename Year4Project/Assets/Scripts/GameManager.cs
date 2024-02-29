@@ -4,11 +4,12 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     //taken from this githib repo https://github.com/JJMaslen/WalkWithRhythm
     public AudioSource music;
+    public AudioClip clip;
     public static GameManager Instance { get; private set; }
     public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
     public int songKey;
@@ -40,8 +41,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        music.Play();
+        if(SceneManager.GetActiveScene().name == "GameScene") music.Play();
     }
     // Start is called before the first frame update
     public void RegisterEnemy(int enemyID)
