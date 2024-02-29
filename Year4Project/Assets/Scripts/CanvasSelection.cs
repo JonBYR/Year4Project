@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CanvasSelection : MonoBehaviour
 {
+    private TextAsset jsonFile;
+    public GameManager man;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +14,10 @@ public class CanvasSelection : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+    public void MusicLoader(TextAsset pathName)
     {
         
     }
