@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CanvasSelection : MonoBehaviour
 {
-    private GameManager man;
+    public GameManager man;
     [System.Serializable]
     public class Meta //contains all relevant information regarding retrieval of json file
     {
@@ -50,11 +50,12 @@ public class CanvasSelection : MonoBehaviour
         public List<Meta> m;
         public List<Track> t;
     }
-    public MusicData m = new MusicData();
+    private Track m = new Track();
     // Start is called before the first frame update
     void Start()
     {
         man = GameManager.Instance;
+        Debug.Log(man);
     }
 
     // Update is called once per frame
@@ -64,17 +65,18 @@ public class CanvasSelection : MonoBehaviour
     }
     public void MusicLoader(TextAsset pathName)
     {
-        m = JsonUtility.FromJson<MusicData>(pathName.text);
-        Debug.Log(pathName.text);
-        man.loudness = m.t[0].loudness;
-        man.songBpm = m.t[0].tempo;
-        man.songKey = m.t[0].key;
-        man.time_signature = m.t[0].time_signature;
+        m = JsonUtility.FromJson<Track>(pathName.text);
+        Debug.Log(m.loudness);
+        man.loudness = m.loudness;
+        man.songBpm = m.tempo;
+        man.songKey = m.key;
+        man.time_signature = m.time_signature;
         SceneManager.LoadScene("GameScene");
     }
     public void AudioLoader(AudioClip a)
     {
         man.music.clip = a;
+        man.startMusic();
     }
     public void QuitGame()
     {

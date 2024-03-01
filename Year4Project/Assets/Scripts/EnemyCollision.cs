@@ -12,10 +12,14 @@ public class EnemyCollision : MonoBehaviour
     private MimicController mimicController;
     private MageController mageController;
     private SkeletonController skeletonController;
-    public GameManager man;
+    private GameManager man;
     public MissedBeat mBeat;
     private bool enemyAttack = false;
     // Start is called before the first frame update
+    private void Start()
+    {
+        man = GameManager.Instance;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.gameObject.tag == "TriggerZone") return;

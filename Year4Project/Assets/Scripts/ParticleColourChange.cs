@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class ParticleColourChange : MonoBehaviour
 {
-    public GameManager man;
+    private GameManager man;
     public Dictionary<int, Color> keyColourMap = new Dictionary<int, Color> {
         {0, new Color(0,0,255) }, //blue
         {1, new Color(13,152,186) }, //blue green
@@ -24,6 +24,7 @@ public class ParticleColourChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        man = GameManager.Instance;
         Color particleColours = keyColourMap[man.songKey];
         ParticleSystem.MainModule ma = system.main;
         ma.startColor = particleColours;

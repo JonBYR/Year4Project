@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class BalanceController : MonoBehaviour
 {
-    public GameManager man;
+    private GameManager man;
     public Dictionary<int, Color> keyColourMap = new Dictionary<int, Color> {
         {0, new Color(0,0,255) }, //blue
         {1, new Color(13,152,186) }, //blue green
@@ -28,6 +28,7 @@ public class BalanceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        man = GameManager.Instance;
         if(vol.TryGet<Bloom>(out bloom))
         {
             Color bloomColours = keyColourMap[man.songKey];

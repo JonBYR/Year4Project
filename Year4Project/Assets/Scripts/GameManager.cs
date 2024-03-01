@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm
     public Dictionary<int, bool> enemyObjects = new Dictionary<int, bool>();
     bool beatDone = false;
-    public Slider s;
+    private Slider s;
     private Color red = new Color(255f, 0f, 0f);
     private Color green = new Color(0f, 255f, 0f);
     public double bpmConversion(double bpm)
@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this);
         }
-        if(SceneManager.GetActiveScene().name == "GameScene") music.Play();
     }
     // Start is called before the first frame update
     public void RegisterEnemy(int enemyID)
@@ -56,8 +56,24 @@ public class GameManager : MonoBehaviour
     {
         return enemyObjects[enemyID];
     }
+    public void setLoudness(float l)
+    {
+        loudness = l;
+    }
+    public void setSlider()
+    {
+        if(SceneManager.GetActiveScene().name == "GameScene")
+        {
+            s = GameObject.Find("Slider").GetComponent<Slider>();
+        }
+    }
+    public void startMusic()
+    {
+        music.Play();
+    }
     void Update() 
     {
+        if (SceneManager.GetActiveScene().name != "GameScene") return;
         dTimer += Time.deltaTime;
         s.value = (float)dTimer;
         double bpm = bpmConversion(songBpm);

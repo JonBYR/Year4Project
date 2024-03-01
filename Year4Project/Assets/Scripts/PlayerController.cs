@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject oob;
     public GameObject zone;
-    public GameManager man;
+    private GameManager man;
     public TextMeshProUGUI scoreText;
     public float speed = 5f;
     public float rawDist = 0.1f;
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        man = GameManager.Instance;
         scoreText.text = "Score: " + score;
         horizontal = false;
         moving = false;
