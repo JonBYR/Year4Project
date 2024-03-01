@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public TextMeshProUGUI healthText;
@@ -24,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log(health);
         if (health <= 0 )
         {
-            Debug.Log("Game Over");
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

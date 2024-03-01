@@ -73,6 +73,10 @@ public class CanvasSelection : MonoBehaviour
         man.time_signature = m.time_signature;
         SceneManager.LoadScene("GameScene");
     }
+    public void ReloadMenu()
+    {
+        SceneManager.LoadScene("MusicSelection");
+    }
     public void AudioLoader(AudioClip a)
     {
         man.music.clip = a;
