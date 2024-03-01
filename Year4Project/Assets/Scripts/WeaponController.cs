@@ -37,7 +37,7 @@ public class WeaponController : MonoBehaviour
             {
                 enemyEntered = true;
                 if (PlayerController.moving == true) return;
-                else { Destroy(enemiesToAttack.gameObject); durability--; EnemySpawner.enemiesSpawned--; }
+                else { durability--; EnemySpawner.enemiesSpawned--; Destroy(enemiesToAttack.gameObject); }
             }
             else enemyEntered = false;
         }

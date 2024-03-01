@@ -10,7 +10,6 @@ public class EnemySpawner : MonoBehaviour
     public GridLayout grid;
     public GameObject[] enemies = new GameObject[5];
     int enemySize;
-    bool spawning = true;
     public LayerMask layers;
     public float spawnRadius;
     public static int enemiesSpawned;
@@ -18,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         man = GameManager.Instance;
-        if (man.loudness <= 0.5) enemySize = 3;
+        if (man.loudness >= -30) enemySize = 3; //loudness is measured in the API as being between -60 and 0 with -60 being the lowest
         else enemySize = 5;
         enemiesSpawned = 0;
         StartCoroutine(SpawnEnemy());
@@ -27,12 +26,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //if (enemiesSpawned < 5) StartCoroutine("SpawnEnemy");
-        //else if (enemiesSpawned >= 5) StopCoroutine("SpawnEnemy");
+        Debug.Log(enemiesSpawned);
     }
     IEnumerator SpawnEnemy()
     {
-        while(spawning) //Coroutines needed to be in a loop
+        while(enemiesSpawned <= 5) //Coroutines needed to be in a loop
         {
             float x = UnityEngine.Random.Range(-10, 9);
             float y = UnityEngine.Random.Range(-4, 3);
