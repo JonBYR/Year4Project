@@ -28,4 +28,8 @@ public class PlayerHealth : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+    public static void setHealth(int h)
+    {
+        health = h;
+    }
 }

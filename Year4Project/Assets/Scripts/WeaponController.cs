@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
-    public static int durability = 10;
+    public static int durability = 5;
     public static bool enemyEntered = false;
     public static string currentWeapon = "Baton";
     private Vector2 colliderSize = Vector2.zero;
@@ -37,7 +37,14 @@ public class WeaponController : MonoBehaviour
             {
                 enemyEntered = true;
                 if (PlayerController.moving == true) return;
-                else { durability--; EnemySpawner.enemiesSpawned--; Destroy(enemiesToAttack.gameObject); }
+                else { 
+                    durability--;
+                    Debug.Log("Durability: " + durability);
+                    if (durability <= 0) currentWeapon = "Null";
+                    EnemySpawner.enemiesSpawned--;
+                    Debug.Log(durability);
+                    Destroy(enemiesToAttack.gameObject); 
+                }
             }
             else enemyEntered = false;
         }

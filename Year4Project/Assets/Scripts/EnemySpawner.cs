@@ -30,8 +30,12 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator SpawnEnemy()
     {
-        while(enemiesSpawned <= 5) //Coroutines needed to be in a loop
+        while(enemiesSpawned <= 10000) //Coroutines needed to be in a loop
         {
+            if(enemiesSpawned >= 5)
+            {
+                yield return new WaitUntil(() => enemiesSpawned < 5); //creates a delegate that waits until number of enemies spawned goes down before spawning a new enemy
+            }
             float x = UnityEngine.Random.Range(-10, 9);
             float y = UnityEngine.Random.Range(-4, 3);
             Vector3 spawnPos = new Vector3(x, y, 0);

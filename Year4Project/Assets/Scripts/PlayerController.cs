@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
             else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";
             else if (collision.name.Contains("Harp")) WeaponController.currentWeapon = "Harp";
             Destroy(collision.gameObject);
+            WeaponController.durability = 5;
         }
     }
 }
