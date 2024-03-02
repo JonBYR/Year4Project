@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
         {
             weapon.ChangeSize(1, 1);
         }
+        else if(WeaponController.currentWeapon == "Null")
+        {
+            weapon.ChangeSize(0, 0);
+            weapon.ChangeOffset(0, 0);
+        }
         else return;
     }
     // Update is called once per frame
@@ -106,6 +111,7 @@ public class PlayerController : MonoBehaviour
             if (collision.name.Contains("Baton")) WeaponController.currentWeapon = "Baton";
             else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";
             else if (collision.name.Contains("Harp")) WeaponController.currentWeapon = "Harp";
+            Debug.Log(WeaponController.currentWeapon);
             Destroy(collision.gameObject);
             WeaponController.durability = 5;
         }

@@ -26,11 +26,6 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         Collider2D enemiesToAttack = Physics2D.OverlapBox(offsetPoint.localPosition, colliderSize, 0f, enemyLayer);
-        if (currentWeapon == "Null")
-        {
-            ChangeOffset(0, 0);
-            ChangeSize(0, 0);
-        }
         if(PlayerController.hitBeat == true)
         {
             if (enemiesToAttack != null)
@@ -42,7 +37,6 @@ public class WeaponController : MonoBehaviour
                     Debug.Log("Durability: " + durability);
                     if (durability <= 0) currentWeapon = "Null";
                     EnemySpawner.enemiesSpawned--;
-                    Debug.Log(durability);
                     Destroy(enemiesToAttack.gameObject); 
                 }
             }
