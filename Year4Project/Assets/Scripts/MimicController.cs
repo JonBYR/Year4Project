@@ -10,7 +10,6 @@ public class MimicController : Enemy
     private GameManager man;
     private PlayerController player;
     public LayerMask walls;
-    public float mimicDist = 0.01f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +24,11 @@ public class MimicController : Enemy
         {
             if (player.horizontal)
             {
-                if (!Physics2D.OverlapCircle(transform.position += new Vector3(-player.direction * mimicDist, 0, 0), 0.2f, walls)) transform.position += new Vector3(-player.direction * mimicDist, 0, 0);
+                if (!Physics2D.OverlapCircle(transform.position += new Vector3(-player.direction * rawDist, 0, 0), 0.2f, walls)) transform.position += new Vector3(-player.direction * rawDist, 0, 0);
             }
             else if (!player.horizontal)
             {
-                if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, -player.direction * mimicDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, -player.direction * mimicDist, 0f);
+                if (!Physics2D.OverlapCircle(transform.position += new Vector3(0, -player.direction * rawDist, 0), 0.2f, walls)) transform.position += new Vector3(0f, -player.direction * rawDist, 0f);
             }
         }
     }

@@ -13,6 +13,7 @@ public class ZombieController : Enemy
     public LayerMask walls;
     private int beatCounter;
     public int beatThreshold;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,28 +41,28 @@ public class ZombieController : Enemy
             {
                 if (positiveHorizontal < 1f && positiveVertical < 1f)
                 {
-                    moveDirection = new Vector3(0, -0.1f, 0);
+                    moveDirection = new Vector3(0, -rawDist, 0);
                 }
                 else if ((positiveHorizontal < positiveVertical || positiveVertical < 1f) && positiveHorizontal >= 1f) //if there is a negligable distance the AI should move vertically
                 {
                     if(horizontalDistance < 0)
                     {
-                        moveDirection = new Vector3(-0.1f, 0, 0);
+                        moveDirection = new Vector3(-rawDist, 0, 0);
                     }
                     else
                     {
-                        moveDirection = new Vector3(0.1f, 0, 0);
+                        moveDirection = new Vector3(rawDist, 0, 0);
                     }
                 }
                 else if ((positiveHorizontal > positiveVertical || positiveHorizontal < 1f) && positiveVertical >= 1f)
                 {
                     if(verticalDistance < 0)
                     {
-                        moveDirection = new Vector3(0, -0.1f, 0);
+                        moveDirection = new Vector3(0, -rawDist, 0);
                     }
                     else
                     {
-                        moveDirection = new Vector3(0, 0.1f, 0);
+                        moveDirection = new Vector3(0, rawDist, 0);
                     }
                 }
                 if (!Physics2D.OverlapCircle(transform.position += moveDirection, 0.2f, walls)) transform.position += moveDirection; 

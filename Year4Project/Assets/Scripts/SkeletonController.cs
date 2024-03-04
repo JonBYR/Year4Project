@@ -31,19 +31,19 @@ public class SkeletonController : Enemy
                 int randomDirection = (int)Random.Range(0, 3);
                 if (randomDirection == 0)
                 {
-                    moveDirecion = new Vector3(0.1f, 0, 0);
+                    moveDirecion = new Vector3(rawDist, 0, 0);
                 }
                 else if(randomDirection == 1)
                 {
-                    moveDirecion = new Vector3(0, 0.1f, 0);
+                    moveDirecion = new Vector3(0, rawDist, 0);
                 }
                 else if(randomDirection == 2)
                 {
-                    moveDirecion = new Vector3(-0.1f, 0, 0);
+                    moveDirecion = new Vector3(-rawDist, 0, 0);
                 }
                 else if(randomDirection == 3)
                 {
-                    moveDirecion = new Vector3(0, -0.1f, 0);
+                    moveDirecion = new Vector3(0, -rawDist, 0);
                 }
                 if (!Physics2D.OverlapCircle(transform.position += moveDirecion, 0.2f, walls)) transform.position += moveDirecion;
                 beatCounter = 0;

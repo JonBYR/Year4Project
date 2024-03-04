@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public LayerMask playerMask;
     private MissedBeat mBeat;
     public bool canMove;
+    public float rawDist;
     // Start is called before the first frame update
     /*
     void Start()

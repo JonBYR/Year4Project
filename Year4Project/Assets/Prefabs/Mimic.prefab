@@ -106,10 +106,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   canMove: 0
+  rawDist: 0.025
   walls:
     serializedVersion: 2
     m_Bits: 8
-  mimicDist: 0.01
 --- !u!95 &3886231951435385089
 Animator:
   serializedVersion: 5

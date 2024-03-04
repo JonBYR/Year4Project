@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(WeaponController.currentWeapon);
             Destroy(collision.gameObject);
             WeaponController.durability = 5;
+            WeaponSpawner.spawnWeapon = false;
         }
     }
 }

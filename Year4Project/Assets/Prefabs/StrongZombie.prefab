@@ -179,6 +179,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   canMove: 0
+  rawDist: 0.25
   walls:
     serializedVersion: 2
     m_Bits: 8

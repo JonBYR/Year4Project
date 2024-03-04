@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private Slider s;
     private Color red = new Color(255f, 0f, 0f);
     private Color green = new Color(0f, 255f, 0f);
+    private int beatCount;
     public double bpmConversion(double bpm)
     {
         double fixedUpdateBpm = 60 / bpm; //fixed Update is 50 frames rather than 60 frames per second, so bpm must be converted to match the timing for fixedUpdate
@@ -54,7 +55,8 @@ public class GameManager : MonoBehaviour
     }
     public bool returnEnemyMove(int enemyID)
     {
-        return enemyObjects[enemyID];
+        if (beatCount % 2 == 0) return enemyObjects[enemyID];
+        else return false;
     }
     public void setLoudness(float l)
     {
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
             if(beatDone == true)
             {
                 beatDone = false;
+                beatCount++;
                 foreach(int id in enemyObjects.Keys.ToList()) //once beat is completed let enemies move again
                 {
                     enemyObjects[id] = true;

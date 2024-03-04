@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     public static int durability = 5;
     public static bool enemyEntered = false;
     public static string currentWeapon = "Baton";
-    private Vector2 colliderSize = Vector2.zero;
+    [SerializeField] private Vector2 colliderSize = Vector2.zero;
     public LayerMask enemyLayer;
     public Transform offsetPoint;
     public GameObject player;
@@ -28,6 +28,7 @@ public class WeaponController : MonoBehaviour
         Collider2D enemiesToAttack = Physics2D.OverlapBox(offsetPoint.localPosition, colliderSize, 0f, enemyLayer);
         if(PlayerController.hitBeat == true)
         {
+            Debug.Log("Collider Size: " + currentWeapon + " " + colliderSize);
             if (enemiesToAttack != null)
             {
                 enemyEntered = true;
@@ -51,6 +52,7 @@ public class WeaponController : MonoBehaviour
     {
         //boxCollider.size = new Vector2(x, y);
         colliderSize = new Vector2(x, y);
+        Debug.Log("Collider Size: " + currentWeapon + " " + colliderSize);
     }
     private void OnDrawGizmosSelected()
     {

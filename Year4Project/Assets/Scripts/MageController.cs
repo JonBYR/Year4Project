@@ -39,19 +39,19 @@ public class MageController : Enemy
             {
                 if (positiveHorizontal < 1f && positiveVertical < 1f)
                 {
-                    moveDirection = new Vector3(0, -0.1f, 0);
+                    moveDirection = new Vector3(0, -rawDist, 0);
                     triggerArea.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
                 }
                 else if ((positiveHorizontal < positiveVertical || positiveVertical < 1f) && positiveHorizontal >= 1f) //if there is a negligable distance the AI should move vertically
                 {
                     if (horizontalDistance < 0)
                     {
-                        moveDirection = new Vector3(-0.1f, 0, 0);
+                        moveDirection = new Vector3(-rawDist, 0, 0);
                         triggerArea.transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
                     }
                     else
                     {
-                        moveDirection = new Vector3(0.1f, 0, 0);
+                        moveDirection = new Vector3(rawDist, 0, 0);
                         triggerArea.transform.rotation = Quaternion.AngleAxis(-90, Vector3.forward);
                     }
                 }
@@ -59,12 +59,12 @@ public class MageController : Enemy
                 {
                     if (verticalDistance < 0)
                     {
-                        moveDirection = new Vector3(0, -0.1f, 0);
+                        moveDirection = new Vector3(0, -rawDist, 0);
                         triggerArea.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
                     }
                     else
                     {
-                        moveDirection = new Vector3(0, 0.1f, 0);
+                        moveDirection = new Vector3(0, rawDist, 0);
                         triggerArea.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
                     }
                 }
