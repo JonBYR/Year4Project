@@ -11,7 +11,7 @@ public class BalanceController : MonoBehaviour
         {0, new Color(0,0,255) }, //blue
         {1, new Color(13,152,186) }, //blue green
         {2, new Color(0,255,0)}, //green
-        {3, new Color(128,128,0)}, //olive green
+        {3, new Color(186,184,108)}, //olive green
         {4, new Color(255,255,0) }, //yellow
         {5, new Color(255,174,66) }, //yellow orange
         {6, new Color(255,165,0) }, //orange
