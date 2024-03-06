@@ -13,6 +13,8 @@ public class WeaponController : MonoBehaviour
     public LayerMask enemyLayer;
     public Transform offsetPoint;
     public GameObject player;
+    public SpriteRenderer arrow;
+    private bool renderArrow = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class WeaponController : MonoBehaviour
         //boxCollider.offset = new Vector2(1, 0); //sets the collider for the weapon to be one square to the right
         //offsetPoint.localPosition = new Vector2(1, 0);
         colliderSize = new Vector2(1, 1);
+        arrow.enabled = false;
+        //StartCoroutine(ArrowShowcase());
     }
 
     // Update is called once per frame
@@ -57,5 +61,22 @@ public class WeaponController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(offsetPoint.localPosition, colliderSize);
+    }
+    void RenderArrow()
+    {
+        renderArrow = !renderArrow;
+    }
+    IEnumerator ArrowShowcase()
+    {
+        while(renderArrow == false)
+        {
+            arrow.transform.position = offsetPoint.localPosition;
+            arrow.transform.rotation = offsetPoint.localRotation;
+            arrow.enabled = true;
+            Debug.Log("Calling Coroutine");
+            RenderArrow();
+            yield return new WaitForSeconds(1.0f);
+        }
+        arrow.enabled = false;
     }
 }

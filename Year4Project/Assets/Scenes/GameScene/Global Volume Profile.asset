@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 255, g: 255, b: 0, a: 1}
+    m_Value: {r: 75, g: 0, b: 130, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -282,6 +282,7 @@ MonoBehaviour:
   - {fileID: -952355877730184583}
   - {fileID: -2847505611290669989}
   - {fileID: 501702518206220882}
+  - {fileID: 8808221876420787955}
 --- !u!114 &501702518206220882
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -294,10 +295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfbdbb87d3286943a057f7791b43141, type: 3}
   m_Name: ChannelMixer
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 58.823532
   redOutGreenIn:
     m_OverrideState: 0
     m_Value: 0
@@ -309,7 +310,7 @@ MonoBehaviour:
     m_Value: 0
   greenOutGreenIn:
     m_OverrideState: 1
-    m_Value: 200
+    m_Value: 0
   greenOutBlueIn:
     m_OverrideState: 0
     m_Value: 0
@@ -321,7 +322,7 @@ MonoBehaviour:
     m_Value: 0
   blueOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 101.960785
 --- !u!114 &4160650873717695816
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -341,3 +342,28 @@ MonoBehaviour:
   tint:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &8808221876420787955
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa0085f50d5e54f8144f766051a691, type: 3}
+  m_Name: FilmGrain
+  m_EditorClassIdentifier: 
+  active: 1
+  type:
+    m_OverrideState: 1
+    m_Value: 3
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0
+  response:
+    m_OverrideState: 1
+    m_Value: 0.542
+  texture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}

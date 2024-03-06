@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyCollision : MonoBehaviour
 {
@@ -15,10 +17,16 @@ public class EnemyCollision : MonoBehaviour
     private GameManager man;
     public MissedBeat mBeat;
     private bool enemyAttack = false;
+    public VolumeProfile profile;
+    UnityEngine.Rendering.Universal.FilmGrain grain;
     // Start is called before the first frame update
     private void Start()
     {
         man = GameManager.Instance;
+        if (profile.TryGet<FilmGrain>(out grain))
+        {
+            grain.intensity.Override(0f);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +36,11 @@ public class EnemyCollision : MonoBehaviour
         {
             enemyAttack = true;
             PlayerHealth.TakeDamage();
-            StartCoroutine(mBeat.Shake(.15f, .4f));
+            if (profile.TryGet<FilmGrain>(out grain))
+            {
+                grain.intensity.Override(1f);
+            }
+            Invoke("ScaryEffect", 3);
             if (collision.gameObject.name.Contains("Mage"))
             {
                 mageController = collision.gameObject.GetComponent<MageController>();
@@ -90,5 +102,12 @@ public class EnemyCollision : MonoBehaviour
     void StartSkeleton()
     {
         skeletonController.enabled = true;
+    }
+    void ScaryEffect()
+    {
+        if (profile.TryGet<FilmGrain>(out grain))
+        {
+            grain.intensity.Override(0f);
+        }
     }
 }
