@@ -14,9 +14,17 @@ public class MimicController : Enemy
     void Start()
     {
         man = GameManager.Instance;
+        man.RegisterEnemy(GetInstanceID());
         player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-
+    private void Update()
+    {
+        GameObject d = GameManager.Instance.defaultObject;
+        if (d != null)
+        {
+            this.gameObject.transform.localScale = d.transform.localScale;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

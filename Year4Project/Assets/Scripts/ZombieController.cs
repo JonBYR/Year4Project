@@ -29,6 +29,14 @@ public class ZombieController : Enemy
         if(man.onBeat == true && man.returnEnemyMove(GetInstanceID())) //enemy assumes perfect movement
         {
             man.setEnemyMove(GetInstanceID());
+            /*
+            man.setEnemyMove(GetInstanceID()); //this will set the enemy to be false after beat is called so the enemy doesn't continually move
+            if (man.GetEnemySize() == false)
+            {
+                this.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            }
+            else if (man.GetEnemySize() == true) this.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            */
             float horizontalDistance = p.transform.position.x - transform.position.x;
             float verticalDistance = p.transform.position.y - transform.position.y;
             Vector3 moveDirection = Vector3.zero;

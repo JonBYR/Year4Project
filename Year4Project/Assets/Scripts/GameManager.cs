@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private Color red = new Color(255f, 0f, 0f);
     private Color green = new Color(0f, 255f, 0f);
     private int beatCount;
+    public bool enemySmall = false;
+    public GameObject defaultObject;
     public double bpmConversion(double bpm)
     {
         double fixedUpdateBpm = 60 / bpm; //fixed Update is 50 frames rather than 60 frames per second, so bpm must be converted to match the timing for fixedUpdate
@@ -43,11 +45,21 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     // Start is called before the first frame update
     public void RegisterEnemy(int enemyID)
     {
         enemyObjects.Add(enemyID, true); //add new value in dictionary with unique enemy id and set to true
+    }
+    public void UnregisterEnemy(int enemyID)
+    {
+        enemyObjects.Remove(enemyID);
+    }
+    public bool GetEnemySize()
+    {
+        Debug.Log("Size" + enemySmall);
+        return enemySmall;
     }
     public void setEnemyMove(int enemyID)
     {
@@ -73,6 +85,17 @@ public class GameManager : MonoBehaviour
     {
         music.Play();
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "GameScene")
+        {
+            defaultObject = GameObject.Find("Default");
+        }
+        else
+        {
+            defaultObject = null;
+        }
+    }
     void Update() 
     {
         if (SceneManager.GetActiveScene().name != "GameScene") return;
@@ -83,7 +106,12 @@ public class GameManager : MonoBehaviour
         {
             onBeat = true;
             s.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = green;
-            if(beatDone == false) beatDone = true;
+            if (beatDone == false) 
+            {
+                
+                beatDone = true;
+            }
+            
         }
         else 
         {
@@ -91,7 +119,7 @@ public class GameManager : MonoBehaviour
             {
                 beatDone = false;
                 beatCount++;
-                foreach(int id in enemyObjects.Keys.ToList()) //once beat is completed let enemies move again
+                foreach (int id in enemyObjects.Keys.ToList()) //once beat is completed let enemies move again
                 {
                     enemyObjects[id] = true;
                 }

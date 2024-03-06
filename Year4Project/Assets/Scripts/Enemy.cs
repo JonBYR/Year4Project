@@ -5,7 +5,8 @@ using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class Enemy : MonoBehaviour
 {
-    private GameManager game;
+    
+    //private GameManager man;
     public Vector2 attackSize;
     public Transform enemyTransform;
     public LayerMask playerMask;
@@ -13,22 +14,30 @@ public class Enemy : MonoBehaviour
     public bool canMove;
     public float rawDist;
     public ParticleSystem enemyParticles;
+    protected int currentScale;
+    protected Vector3 big = new Vector3(1.2f, 1.2f, 1.0f);
+    protected Vector3 small = new Vector3(1.0f,1.0f,1.0f);
     // Start is called before the first frame update
+    void Start()
+    {
+        //man = GameManager.Instance;
+        currentScale = 0;
+        //man.RegisterEnemy(GetInstanceID());
+        //Debug.Log("GameManager" + man);
+        big = new Vector3(1.2f, 1.2f, 1);
+        small = new Vector3(1, 1, 1);
+    }
     
-    /*
     // Update is called once per frame
     void Update()
     {
-        Collider2D playerToAttack = Physics2D.OverlapBox(enemyTransform.localPosition, attackSize, 0f, playerMask);
-        if ((playerToAttack != null) && canMove)
+        GameObject d = GameManager.Instance.defaultObject;
+        if(d != null )
         {
-            PlayerHealth.TakeDamage();
-            StartCoroutine(mBeat.Shake(.15f, .4f));
-            canMove = false;
-            Invoke("MoveAgain", 3);
+            this.gameObject.transform.localScale = d.transform.localScale;
         }
     }
-    */
+    
     /*
     void MoveAgain()
     {
@@ -98,5 +107,6 @@ public class Enemy : MonoBehaviour
     public void OnDestroy()
     {
         Instantiate(enemyParticles, transform.position, transform.rotation);
+        GameManager.Instance.UnregisterEnemy(GetInstanceID());
     }
 }
