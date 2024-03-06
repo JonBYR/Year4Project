@@ -201,6 +201,7 @@ MonoBehaviour:
     m_Bits: 512
   canMove: 0
   rawDist: 0.25
+  enemyParticles: {fileID: 3363747845993826614, guid: 4fbfba0baa193c84b858a28803c720ad, type: 3}
   walls:
     serializedVersion: 2
     m_Bits: 8

@@ -12,14 +12,10 @@ public class Enemy : MonoBehaviour
     private MissedBeat mBeat;
     public bool canMove;
     public float rawDist;
+    public ParticleSystem enemyParticles;
     // Start is called before the first frame update
+    
     /*
-    void Start()
-    {
-        mBeat = GameObject.Find("Main Camera").GetComponent<MissedBeat>();
-        canMove = true;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -99,4 +95,8 @@ public class Enemy : MonoBehaviour
         }
     }
     */
+    public void OnDestroy()
+    {
+        Instantiate(enemyParticles, transform.position, transform.rotation);
+    }
 }
