@@ -15,6 +15,7 @@ public class WeaponController : MonoBehaviour
     public GameObject player;
     public SpriteRenderer arrow;
     private bool renderArrow = false;
+    Quaternion arrowRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,9 @@ public class WeaponController : MonoBehaviour
         //offsetPoint.localPosition = new Vector2(1, 0);
         colliderSize = new Vector2(1, 1);
         arrow.enabled = false;
-        //StartCoroutine(ArrowShowcase());
+        StartCoroutine(ArrowShowcase());
+        arrowRotation = Quaternion.Euler(0, 0, 90);
+        arrow.transform.rotation = arrowRotation;
     }
 
     // Update is called once per frame
@@ -58,6 +61,10 @@ public class WeaponController : MonoBehaviour
         colliderSize = new Vector2(x, y);
         Debug.Log("Collider Size: " + currentWeapon + " " + colliderSize);
     }
+    public void ChangeRotation(Quaternion r)
+    {
+        arrowRotation = r;
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireCube(offsetPoint.localPosition, colliderSize);
@@ -68,15 +75,16 @@ public class WeaponController : MonoBehaviour
     }
     IEnumerator ArrowShowcase()
     {
-        while(renderArrow == false)
+        while(true)
         {
             arrow.transform.position = offsetPoint.localPosition;
-            arrow.transform.rotation = offsetPoint.localRotation;
+            arrow.transform.rotation = arrowRotation;
             arrow.enabled = true;
             Debug.Log("Calling Coroutine");
             RenderArrow();
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f); //this gets called to wait a second before derending the arrow
+            arrow.enabled = false;
+            yield return new WaitUntil(() => PlayerController.hitBeat == true); //waits until the player hits a beat before re rendering the arrow
         }
-        arrow.enabled = false;
     }
 }

@@ -31,6 +31,22 @@ public class PlayerController : MonoBehaviour
     }
     void CheckString(string direction)
     {
+        if(direction == "Up")
+        {
+            weapon.ChangeRotation(Quaternion.Euler(0, 0, 90));
+        }
+        else if(direction == "Down")
+        {
+            weapon.ChangeRotation(Quaternion.Euler(0, 0, 270));
+        }
+        else if(direction == "Right")
+        {
+            weapon.ChangeRotation(Quaternion.Euler(0, 0, 0));
+        }
+        else if(direction == "Left")
+        {
+            weapon.ChangeRotation(Quaternion.Euler(0, 0, 180));
+        }
         if (WeaponController.currentWeapon == "Guitar")
         {
             if (direction == "Up" || direction == "Down") weapon.ChangeSize(3, 1);
