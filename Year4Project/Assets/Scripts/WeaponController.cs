@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
         //boxCollider = this.GetComponent<BoxCollider2D>();
         //boxCollider.offset = new Vector2(1, 0); //sets the collider for the weapon to be one square to the right
         //offsetPoint.localPosition = new Vector2(1, 0);
-        colliderSize = new Vector2(1, 1);
+        colliderSize = new Vector2(1.5f, 1.5f);
         arrow.enabled = false;
         StartCoroutine(ArrowShowcase());
         arrowRotation = Quaternion.Euler(0, 0, 90);
@@ -77,11 +77,15 @@ public class WeaponController : MonoBehaviour
     {
         while(true)
         {
-            arrow.transform.position = offsetPoint.localPosition;
-            arrow.transform.rotation = arrowRotation;
-            arrow.enabled = true;
-            Debug.Log("Calling Coroutine");
-            RenderArrow();
+            if (currentWeapon == "Null") arrow.enabled = false;
+            else
+            {
+                arrow.transform.position = offsetPoint.localPosition;
+                arrow.transform.rotation = arrowRotation;
+                arrow.enabled = true;
+                Debug.Log("Calling Coroutine");
+                RenderArrow();
+            }
             yield return new WaitForSeconds(1.0f); //this gets called to wait a second before derending the arrow
             arrow.enabled = false;
             yield return new WaitUntil(() => PlayerController.hitBeat == true); //waits until the player hits a beat before re rendering the arrow

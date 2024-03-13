@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(WeaponController.currentWeapon == "Baton")
         {
-            weapon.ChangeSize(1, 1);
+            weapon.ChangeSize(1.5f, 1.5f);
         }
         else if(WeaponController.currentWeapon == "Null")
         {
