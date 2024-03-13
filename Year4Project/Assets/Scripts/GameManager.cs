@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public float songBpm; //bpm of song (this will be changed to be equal to values from a json file)
     public int songKey;
+    public float duration;
+    private float durationTimer;
     public int time_signature; //will be used for enemy spawning
     public float loudness; //this will be changed later to be based on loudness
     public int margin;
@@ -61,6 +63,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("Size" + enemySmall);
         return enemySmall;
     }
+    public void setTimer()
+    {
+        durationTimer = 0;
+        StartCoroutine("StartTimer");
+    }
+    public void StopTimer()
+    {
+        StopCoroutine("StartTimer");
+    }
     public void setEnemyMove(int enemyID)
     {
         enemyObjects[enemyID] = false;
@@ -83,6 +94,7 @@ public class GameManager : MonoBehaviour
     }
     public void startMusic()
     {
+        Debug.Log("Call music function");
         music.Play();
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -98,7 +110,16 @@ public class GameManager : MonoBehaviour
     }
     void Update() 
     {
+
         if (SceneManager.GetActiveScene().name != "GameScene") return;
+        else
+        {
+            if (durationTimer >= duration)
+            {
+                SceneManager.LoadScene("WinScene");
+                StopCoroutine(StartTimer());
+            }
+        }
         dTimer += Time.deltaTime;
         s.value = (float)dTimer;
         double bpm = bpmConversion(songBpm);
@@ -128,6 +149,14 @@ public class GameManager : MonoBehaviour
             onBeat = false;
         }
         if (dTimer >= bpm) { dTimer = 0; s.value = 0f; }
+    }
+    IEnumerator StartTimer()
+    {
+        while(durationTimer <= duration)
+        {
+            durationTimer++;
+            yield return new WaitForSeconds(1.0f);
+        }
     }
     /*
     void FixedUpdate()

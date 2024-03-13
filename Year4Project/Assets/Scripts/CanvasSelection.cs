@@ -71,6 +71,8 @@ public class CanvasSelection : MonoBehaviour
         man.songBpm = m.tempo;
         man.songKey = m.key;
         man.time_signature = m.time_signature;
+        man.duration = (float)m.duration;
+        man.setTimer();
         PlayerHealth.setHealth(3);
         WeaponController.durability = 5;
         SceneManager.LoadScene("GameScene");
