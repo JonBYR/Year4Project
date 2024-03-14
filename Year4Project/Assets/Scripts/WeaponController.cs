@@ -32,9 +32,9 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D enemiesToAttack = Physics2D.OverlapBox(offsetPoint.localPosition, colliderSize, 0f, enemyLayer);
         if(PlayerController.hitBeat == true)
         {
+            Collider2D enemiesToAttack = Physics2D.OverlapBox(offsetPoint.localPosition, colliderSize, 0f, enemyLayer);
             Debug.Log("Collider Size: " + currentWeapon + " " + colliderSize);
             if (enemiesToAttack != null)
             {

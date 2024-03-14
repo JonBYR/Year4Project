@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private int beatCount;
     public bool enemySmall = false;
     public GameObject defaultObject;
+    public int counter;
     public double bpmConversion(double bpm)
     {
         double fixedUpdateBpm = 60 / bpm; //fixed Update is 50 frames rather than 60 frames per second, so bpm must be converted to match the timing for fixedUpdate
@@ -131,6 +132,8 @@ public class GameManager : MonoBehaviour
             {
                 
                 beatDone = true;
+                counter++;
+                if (counter >= 10) SceneManager.LoadScene("GameOver");
             }
             
         }

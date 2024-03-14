@@ -36,8 +36,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 yield return new WaitUntil(() => enemiesSpawned < 5); //creates a delegate that waits until number of enemies spawned goes down before spawning a new enemy
             }
-            float x = UnityEngine.Random.Range(-10, 9);
-            float y = UnityEngine.Random.Range(-4, 3);
+            float x = UnityEngine.Random.Range(-7, 7);
+            float y = UnityEngine.Random.Range(-3, 3);
             Vector3 spawnPos = new Vector3(x, y, 0);
             Collider2D[] intersection = Physics2D.OverlapCircleAll(new Vector2(x, y), spawnRadius, layers);
             if(intersection.Length == 0) 

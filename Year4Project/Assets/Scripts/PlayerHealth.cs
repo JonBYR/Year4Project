@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI healthText;
     [SerializeField]
     static int health = 1000;
+    public static int originalHealth = 1000;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +33,10 @@ public class PlayerHealth : MonoBehaviour
     public static void setHealth(int h)
     {
         health = h;
+        originalHealth = h;
+    }
+    public static int getHealth()
+    {
+        return health;
     }
 }

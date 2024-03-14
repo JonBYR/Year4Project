@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,11 @@ public class CanvasSelection : MonoBehaviour
     {
         
     }
+    double HealthSetter(double d)
+    {
+        double settingHealth = d / 60; //duration is in seconds
+        return Math.Round(settingHealth);
+    }
     public void MusicLoader(TextAsset pathName)
     {
         m = JsonUtility.FromJson<Track>(pathName.text);
@@ -73,7 +79,9 @@ public class CanvasSelection : MonoBehaviour
         man.time_signature = m.time_signature;
         man.duration = (float)m.duration;
         man.setTimer();
-        PlayerHealth.setHealth(3);
+        man.counter = 0;
+        double health = HealthSetter(m.duration);
+        PlayerHealth.setHealth((int)health);
         WeaponController.durability = 5;
         SceneManager.LoadScene("GameScene");
     }

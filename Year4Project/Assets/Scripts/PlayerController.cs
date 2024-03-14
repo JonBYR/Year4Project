@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.anyKeyDown)
         {
+            man.counter = 0;
             if (man.onBeat == true) //code for movement taken from this tutorial: https://www.youtube.com/watch?v=mbzXIOKZurA
             {
                 hitBeat = true;
