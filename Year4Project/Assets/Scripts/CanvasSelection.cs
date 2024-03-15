@@ -79,6 +79,7 @@ public class CanvasSelection : MonoBehaviour
         man.time_signature = m.time_signature;
         man.duration = (float)m.duration;
         man.setTimer();
+        man.setMargin(m.tempo);
         man.counter = 0;
         double health = HealthSetter(m.duration);
         PlayerHealth.setHealth((int)health);

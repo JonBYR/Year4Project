@@ -49,14 +49,17 @@ MonoBehaviour:
   clip: {fileID: 0}
   songBpm: 0
   songKey: 0
+  duration: 0
   time_signature: 0
   loudness: 0
   margin: 7
   timer: 0
   dTimer: 0
-  dMargin: 0.1
+  dMargin: 0.15
   onBeat: 0
-  s: {fileID: 0}
+  enemySmall: 0
+  defaultObject: {fileID: 0}
+  counter: 0
 --- !u!82 &6889370930300659342
 AudioSource:
   m_ObjectHideFlags: 0

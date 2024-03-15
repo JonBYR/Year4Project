@@ -50,6 +50,17 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    public void setMargin(float t)
+    {
+        if (t < 100)
+        {
+            dMargin = 0.275; //slower songs need more margin of error
+        }
+        else
+        {
+            dMargin = 0.15;
+        }
+    }
     // Start is called before the first frame update
     public void RegisterEnemy(int enemyID)
     {
