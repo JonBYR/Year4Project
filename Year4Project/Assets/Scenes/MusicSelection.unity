@@ -6391,7 +6391,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 171065609}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: MusicLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4900000, guid: 7cb65dfe82e5b9c45bda98511054ecec, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: AudioLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: a6f595acb7ee5f8409574ba065b2bfa0, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &171065609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6894,7 +6918,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 811168547}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: MusicLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4900000, guid: ff1c406a7b05a4548acaf8424c9867f4, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: AudioLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: aea08fdc492146d4e8da3bdfa67bb40e, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &811168547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7523,7 +7571,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1577206487}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: MusicLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4900000, guid: 1b56a9cf19587124ab6130d4daa73d2c, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: AudioLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: da80704fbfe206049995e4d661bd11bc, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1577206487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8045,7 +8117,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2128473350}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: MusicLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4900000, guid: 66f8380fb91a0d6478778835e1b57aaf, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2753909}
+        m_TargetAssemblyTypeName: CanvasSelection, Assembly-CSharp
+        m_MethodName: AudioLoader
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 44c1d0e960edd47499a509e04401bb01, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2128473350
 MonoBehaviour:
   m_ObjectHideFlags: 0
