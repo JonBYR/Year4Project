@@ -8240,7 +8240,7 @@ MonoBehaviour:
   m_text: 'Welcome!
 
     Please select the track that you wish to play for this rhythm
-    game. Buttons are arranged from lowest to highest tempo for difficulty.'
+    game. Buttons are will load a different song of different tempos, key and volume.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
