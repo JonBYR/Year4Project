@@ -13,7 +13,7 @@ public class ZombieController : Enemy
     public LayerMask walls;
     private int beatCounter;
     public int beatThreshold;
-    
+    public BoxCollider2D box;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +22,7 @@ public class ZombieController : Enemy
         man = GameManager.Instance; //gets the singleton
         man.RegisterEnemy(GetInstanceID()); //gets the unique identifier for enemy
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        box.enabled = true;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -77,5 +78,9 @@ public class ZombieController : Enemy
                 beatCounter = 0;
             }
         }
+    }
+    public void TurnBox()
+    {
+        box.enabled = !box.enabled;
     }
 }

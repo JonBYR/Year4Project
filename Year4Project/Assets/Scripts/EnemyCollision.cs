@@ -49,6 +49,7 @@ public class EnemyCollision : MonoBehaviour
             else if(collision.gameObject.name.Contains("Zombie"))
             {
                 zombieController = collision.gameObject.GetComponent<ZombieController>();
+                //zombieController.TurnBox();
                 zombieController.enabled = false;
             }
             else if(collision.gameObject.name.Contains("Mimic"))
@@ -94,6 +95,7 @@ public class EnemyCollision : MonoBehaviour
     void StartZombie()
     {
         zombieController.enabled = true;
+        //zombieController.TurnBox();
     }
     void StartMimic()
     {
