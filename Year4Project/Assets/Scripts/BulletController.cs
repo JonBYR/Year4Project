@@ -41,7 +41,7 @@ public class BulletController : MonoBehaviour
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
         }
-        else if (!negative && (Mathf.Abs(horizontal) < Mathf.Abs(vertical)))
+        else if (!negative && (Mathf.Abs(horizontal) > Mathf.Abs(vertical)))
         {
             this.GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
         }

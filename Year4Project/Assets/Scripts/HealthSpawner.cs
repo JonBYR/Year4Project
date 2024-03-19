@@ -11,7 +11,7 @@ public class HealthSpawner : MonoBehaviour
     // Start is called before the first frame update
     void SpawnHealth()
     {
-        float x = UnityEngine.Random.Range(-7, 7);
+        float x = UnityEngine.Random.Range(-6.5f, 6);
         float y = UnityEngine.Random.Range(-3, 3);
         Vector3 spawnPos = new Vector3(x, y, 0);
         if ((playerPosition.transform.position - spawnPos).magnitude <= spawnRadius)

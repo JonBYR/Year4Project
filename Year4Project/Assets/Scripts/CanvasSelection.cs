@@ -84,6 +84,7 @@ public class CanvasSelection : MonoBehaviour
         double health = HealthSetter(m.duration);
         PlayerHealth.setHealth((int)health);
         WeaponController.durability = 5;
+        WeaponController.currentWeapon = "Baton";
         SceneManager.LoadScene("GameScene");
     }
     public void ReloadMenu()
