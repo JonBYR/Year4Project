@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     protected int currentScale;
     protected Vector3 big = new Vector3(1.2f, 1.2f, 1.0f);
     protected Vector3 small = new Vector3(1.0f,1.0f,1.0f);
+    public BoxCollider2D enemyCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,8 @@ public class Enemy : MonoBehaviour
         //Debug.Log("GameManager" + man);
         big = new Vector3(1.2f, 1.2f, 1);
         small = new Vector3(1, 1, 1);
+        enemyCollider.enabled = false;
+        Invoke("StartColliding", 1f);
     }
     
     // Update is called once per frame
@@ -37,7 +40,10 @@ public class Enemy : MonoBehaviour
             this.gameObject.transform.localScale = d.transform.localScale;
         }
     }
-    
+    void StartColliding()
+    {
+        enemyCollider.enabled = true;
+    }
     /*
     void MoveAgain()
     {

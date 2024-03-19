@@ -14,6 +14,10 @@ public class WeaponController : MonoBehaviour
     public Transform offsetPoint;
     public GameObject player;
     public SpriteRenderer arrow;
+    public AudioClip guitarAudio;
+    public AudioClip harpAudio;
+    public AudioClip batonAudio;
+    public AudioSource weaponSound;
     private bool renderArrow = false;
     Quaternion arrowRotation;
     // Start is called before the first frame update
@@ -39,17 +43,25 @@ public class WeaponController : MonoBehaviour
             if (enemiesToAttack != null)
             {
                 enemyEntered = true;
-                if (PlayerController.moving == true) return;
+                if (PlayerController.moving == true) return; //we do not want to move and attack, so if player is already moving then allow player to move and then the next press will attack
                 else { 
                     durability--;
                     Debug.Log("Durability: " + durability);
                     if (durability <= 0) currentWeapon = "Null";
+                    weaponAudio();
                     EnemySpawner.enemiesSpawned--;
                     Destroy(enemiesToAttack.gameObject); 
                 }
             }
             else enemyEntered = false;
         }
+    }
+    void weaponAudio()
+    {
+        if (currentWeapon == "Baton") weaponSound.clip = batonAudio;
+        else if (currentWeapon == "Guitar") weaponSound.clip = guitarAudio;
+        else if (currentWeapon == "Harp") weaponSound.clip = harpAudio;
+        weaponSound.Play();
     }
     public void ChangeOffset(float x, float y)
     {
