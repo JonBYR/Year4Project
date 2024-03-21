@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using TMPro;
 public class WeaponController : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
@@ -20,6 +20,7 @@ public class WeaponController : MonoBehaviour
     public AudioSource weaponSound;
     private bool renderArrow = false;
     Quaternion arrowRotation;
+    public TextMeshProUGUI weaponText;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        weaponText.text = "Current Weapon: " + currentWeapon;
         if(PlayerController.hitBeat == true)
         {
             Collider2D enemiesToAttack = Physics2D.OverlapBox(offsetPoint.localPosition, colliderSize, 0f, enemyLayer);
@@ -50,7 +52,8 @@ public class WeaponController : MonoBehaviour
                     if (durability <= 0) currentWeapon = "Null";
                     weaponAudio();
                     EnemySpawner.enemiesSpawned--;
-                    Destroy(enemiesToAttack.gameObject); 
+                    Destroy(enemiesToAttack.gameObject);
+                    player.GetComponent<PlayerController>().DoubleScore();
                 }
             }
             else enemyEntered = false;

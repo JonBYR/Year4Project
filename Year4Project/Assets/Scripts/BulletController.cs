@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     public float speed = 5f;
     private Transform playerPos;
     bool negative = false;
+
     private void Awake()
     {
         playerPos = GameObject.Find("Player").GetComponent<Transform>();

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 

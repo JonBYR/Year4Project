@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public TextMeshProUGUI healthText;
+    static UnityEngine.Rendering.Universal.FilmGrain grain;
     [SerializeField]
     static int health = 1000;
     public static int originalHealth = 1000;
@@ -23,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
     public static void TakeDamage()
     {
         health--;
-        Debug.Log(health);
         if (health <= 0 )
         {
             SceneManager.LoadScene("GameOver");

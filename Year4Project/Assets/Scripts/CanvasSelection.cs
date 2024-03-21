@@ -72,6 +72,7 @@ public class CanvasSelection : MonoBehaviour
     public void MusicLoader(TextAsset pathName)
     {
         m = JsonUtility.FromJson<Track>(pathName.text);
+        PlayerController.score = 0;
         Debug.Log(m.loudness);
         man.loudness = m.loudness;
         man.songBpm = m.tempo;

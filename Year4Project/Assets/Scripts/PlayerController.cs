@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public float speed = 5f;
     public float rawDist = 0.1f;
-    int score = 0;
+    public static int score = 0;
     public LayerMask walls;
     public bool horizontal;
     public static bool moving;
@@ -115,6 +115,9 @@ public class PlayerController : MonoBehaviour
             {
                 hitBeat = false;
                 moving = false;
+                if (score > 10) score = score - 10;
+                else if (score > 0) score = score - 1;
+                scoreText.text = "Score: " + score;
                 StartCoroutine(mbeat.Shake(.15f, .4f));
             }
         }
@@ -133,5 +136,10 @@ public class PlayerController : MonoBehaviour
             WeaponController.durability = 5;
             WeaponSpawner.spawnWeapon = false;
         }
+    }
+    public void DoubleScore()
+    {
+        score = score * 2;
+        scoreText.text = "Score: " + score;
     }
 }
