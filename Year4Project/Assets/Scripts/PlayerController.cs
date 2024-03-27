@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject zone;
     private GameManager man;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI infoText;
     public float speed = 5f;
     public float rawDist = 0.1f;
     public static int score = 0;
@@ -28,6 +29,19 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: " + score;
         horizontal = false;
         moving = false;
+        DisplayInfo();
+    }
+    void DisplayInfo()
+    {
+        infoText.enabled = true;
+        if (WeaponController.currentWeapon == "Baton") infoText.text = "Default weapon. Can only attack in front of you";
+        else if (WeaponController.currentWeapon == "Guitar") infoText.text = "Wider width of attack!";
+        else if (WeaponController.currentWeapon == "Harp") infoText.text = "Wider height of attack";
+        Invoke("RemoveText", 3f);
+    }
+    void RemoveText()
+    {
+        infoText.enabled = false;
     }
     void CheckString(string direction)
     {
@@ -131,6 +145,7 @@ public class PlayerController : MonoBehaviour
             if (collision.name.Contains("Baton")) WeaponController.currentWeapon = "Baton";
             else if (collision.name.Contains("Guitar")) WeaponController.currentWeapon = "Guitar";
             else if (collision.name.Contains("Harp")) WeaponController.currentWeapon = "Harp";
+            DisplayInfo();
             Debug.Log(WeaponController.currentWeapon);
             Destroy(collision.gameObject);
             WeaponController.durability = 5;
