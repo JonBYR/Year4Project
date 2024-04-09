@@ -6570,6 +6570,7 @@ GameObject:
   - component: {fileID: 426073588}
   - component: {fileID: 426073590}
   - component: {fileID: 426073591}
+  - component: {fileID: 426073592}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -6648,6 +6649,18 @@ MonoBehaviour:
   playerPosition: {fileID: 270526743047279620}
   spawnRadius: 3
   health: {fileID: 2572291198723031473, guid: 3b9fec96898a087439a5a50306e45251, type: 3}
+--- !u!114 &426073592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426073587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023eb0296c2ee5e44bd5a891a94a5c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &484747029
 GameObject:
   m_ObjectHideFlags: 0
@@ -8314,6 +8327,10 @@ PrefabInstance:
       propertyPath: s
       value: 
       objectReference: {fileID: 679800788}
+    - target: {fileID: 6522330132319987022, guid: ef5793656a0890847aa976fff7d9b838, type: 3}
+      propertyPath: dMargin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6522330132319987022, guid: ef5793656a0890847aa976fff7d9b838, type: 3}
       propertyPath: songKey
       value: 11

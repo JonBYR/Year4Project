@@ -101,7 +101,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Calling Coroutine");
                 RenderArrow();
             }
-            yield return new WaitForSeconds(1.0f); //this gets called to wait a second before derending the arrow
+            yield return new WaitForSeconds(0.5f); //this gets called to wait a second before derending the arrow
             arrow.enabled = false;
             yield return new WaitUntil(() => PlayerController.hitBeat == true); //waits until the player hits a beat before re rendering the arrow
         }

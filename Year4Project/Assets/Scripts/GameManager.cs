@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public double dMargin;
     public bool onBeat = false; //used to determine if a player can move as it is within the bpm
     public Dictionary<int, bool> enemyObjects = new Dictionary<int, bool>();
+    public int playerID;
     bool beatDone = false;
     private Slider s;
     private Color red = new Color(255f, 0f, 0f);

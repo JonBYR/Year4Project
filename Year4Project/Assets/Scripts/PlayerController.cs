@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public MissedBeat mbeat;
     public WeaponController weapon;
     public static bool hitBeat = false;
+    bool alreadyPressed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
         scoreText.text = "Score: " + score;
         horizontal = false;
         moving = false;
+        man.RegisterEnemy(GetInstanceID()); //even though this is on the player, this allows the game to restrict player movement
+        man.playerID = GetInstanceID();
         DisplayInfo();
     }
     void DisplayInfo()
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
         if (Input.anyKeyDown)
         {
             man.counter = 0;
-            if (man.onBeat == true) //code for movement taken from this tutorial: https://www.youtube.com/watch?v=mbzXIOKZurA
+            if (man.onBeat == true && !alreadyPressed) //code for movement taken from this tutorial: https://www.youtube.com/watch?v=mbzXIOKZurA
             {
                 hitBeat = true;
                 score++;
@@ -134,8 +137,9 @@ public class PlayerController : MonoBehaviour
                 scoreText.text = "Score: " + score;
                 StartCoroutine(mbeat.Shake(.15f, .4f));
             }
+            alreadyPressed = true;
         }
-        if (man.onBeat == false) { moving = false; hitBeat = false; }
+        if (man.onBeat == false) { moving = false; hitBeat = false; alreadyPressed = false; }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -156,5 +160,9 @@ public class PlayerController : MonoBehaviour
     {
         score = score * 2;
         scoreText.text = "Score: " + score;
+    }
+    public void OnDestroy()
+    {
+        man.UnregisterEnemy(GetInstanceID());
     }
 }
