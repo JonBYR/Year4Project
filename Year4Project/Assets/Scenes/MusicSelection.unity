@@ -8153,19 +8153,22 @@ MonoBehaviour:
     If you fall into half health, a health pickup
     will spawn
 
+    Press Esc to exit the song and head back to the main menu
 
-    Song 1: Radiohead - Reckoner - Tempo -104.271
 
-    Song 2: ELO
-    - Twilight - Tempo - 139.588
+    Song
+    1: Radiohead - Reckoner - Tempo -104.271
+
+    Song 2: ELO - Twilight - Tempo
+    - 139.588
 
     Song 3: MGMT - Little Dark Age - Tempo - 97.512
 
-    Song
-    4: System of a Down - Shimmy - Tempo - 118.97
+    Song 4: System
+    of a Down - Shimmy - Tempo - 118.97
 
-    Song 5: Joy Division - She''s
-    Lost Control - Tempo - 144.246'
+    Song 5: Joy Division - She''s Lost Control
+    - Tempo - 144.246'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
