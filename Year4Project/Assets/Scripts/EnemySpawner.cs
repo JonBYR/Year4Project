@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
     {
         man = GameManager.Instance;
         Debug.Log("The loudness is" + man.loudness);
-        if (man.loudness <= -7.1318) enemySize = 3; //loudness is measured in the API as being between -60 and 0 with -60 being the lowest
+        if (man.loudness >= -7.1318) enemySize = 3; //loudness is measured in the API as being between -60 and 0 with -60 being the lowest
         else enemySize = 5;
         enemiesSpawned = 0;
         StartCoroutine(SpawnEnemy());
